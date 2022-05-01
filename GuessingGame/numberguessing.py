@@ -1,6 +1,6 @@
 import random
 attempts_list = []
-
+Answers_for_each_stage_list = []
 
 def show_score():
     if len(attempts_list) <= 0:
@@ -10,23 +10,24 @@ def show_score():
 
 def end_score():
     stage_num=1
+
     if len(attempts_list) <=0:
         print("You haven't played the game.")
     else:
         print("\n")
         print("__RESULT__")
-        for i in attempts_list:
-            print("{} stage = {}".format(stage_num,i))
+        for i in range(len(attempts_list)):
+            print("{} stage = {} attempts | answer = {}".format(stage_num,attempts_list[i],Answers_for_each_stage_list[i]))
             stage_num+=1
-        print("High score = {}".format(min(attempts_list)))
-        print("Lower score = {}".format(max(attempts_list)))
+        print("High score = {} attempts".format(min(attempts_list)))
+        print("Lower score = {} attempts".format(max(attempts_list)))
 
 def start_game():
-    game_range = int(input("Please enter the range of numbers to use : "))
-    random_number = int(random.randint(1, game_range))
     print("Hi there! Welcome to the game of guesses!")
     player_name = input("What is your name? ")
     wanna_play = input("Hi, {}, would you like to play the guessing game? (Enter Yes/No) ".format(player_name))
+    game_range = int(input("Please enter the range of numbers to use : "))
+    random_number = int(random.randint(1, game_range))
     
     attempts = 0
     show_score()
@@ -43,6 +44,7 @@ def start_game():
                 play_again = input("Would you like to play again? (Enter Yes/No) ")
                 attempts = 0
                 show_score()
+                Answers_for_each_stage_list.append(guess)
                 random_number = int(random.randint(1, game_range))
                 if play_again.lower() == "no":
                     print("That's cool, have a good one!")
