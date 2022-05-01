@@ -1,10 +1,26 @@
 import random
 attempts_list = []
+
+
 def show_score():
     if len(attempts_list) <= 0:
         print("There is currently no high score, it's yours for the taking!")
     else:
         print("The current high score is {} attempts".format(min(attempts_list)))
+
+def end_score():
+    stage_num=1
+    if len(attempts_list) <=0:
+        print("You haven't played the game.")
+    else:
+        print("\n")
+        print("__RESULT__")
+        for i in attempts_list:
+            print("{} stage = {}".format(stage_num,i))
+            stage_num+=1
+        print("High score = {}".format(min(attempts_list)))
+        print("Lower score = {}".format(max(attempts_list)))
+
 def start_game():
     random_number = int(random.randint(1, 10))
     print("Hi there! Welcome to the game of guesses!")
@@ -29,6 +45,7 @@ def start_game():
                 random_number = int(random.randint(1, 10))
                 if play_again.lower() == "no":
                     print("That's cool, have a good one!")
+                    end_score()
                     break
             elif int(guess) > random_number:
                 print("It's lower")
@@ -41,6 +58,6 @@ def start_game():
             print("({})".format(err))
     else:
         print("That's cool, have a good one!")
-        print("브랜치 확인")
+
 if __name__ == '__main__':
     start_game()
