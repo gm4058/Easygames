@@ -41,5 +41,6 @@ def start_game():
             print("({})".format(err))
     else:
         print("That's cool, have a good one!")
+        print("브랜치 확인")
 if __name__ == '__main__':
     start_game()
