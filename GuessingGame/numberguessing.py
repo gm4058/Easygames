@@ -10,28 +10,30 @@ def show_score():
 
 def end_score():
     stage_num=1
-
-    if len(attempts_list) <=0:
-        print("You haven't played the game.")
-    else:
-        print("\n")
-        print("__RESULT__")
-        for i in range(len(attempts_list)):
-            print("{} stage = {} attempts | answer = {}".format(stage_num,attempts_list[i],Answers_for_each_stage_list[i]))
-            stage_num+=1
-        print("High score = {} attempts".format(min(attempts_list)))
-        print("Lower score = {} attempts".format(max(attempts_list)))
+    print("\n")
+    print("__RESULT__")
+    for i in range(len(attempts_list)):
+        print("{} stage = {} attempts | answer = {}".format(stage_num,attempts_list[i],Answers_for_each_stage_list[i]))
+        stage_num+=1
+    print("High score = {} attempts".format(min(attempts_list)))
+    print("Lower score = {} attempts".format(max(attempts_list)))
 
 def start_game():
     print("Hi there! Welcome to the game of guesses!")
     player_name = input("What is your name? ")
     wanna_play = input("Hi, {}, would you like to play the guessing game? (Enter Yes/No) ".format(player_name))
-    game_range = int(input("Please enter the range of numbers to use : "))
-    random_number = int(random.randint(1, game_range))
-    
+
+    if wanna_play.lower() == "no":
+        print("see you again!")
+        return 0
+    else:
+        game_range = int(input("Please enter the range of numbers to use : "))
+        random_number = int(random.randint(1, game_range))
+
     attempts = 0
     show_score()
     while wanna_play.lower() == "yes":
+
         try:
             guess = input("Pick a number between 1 and {} ".format(game_range))
             if int(guess) < 1 or int(guess) > game_range:
